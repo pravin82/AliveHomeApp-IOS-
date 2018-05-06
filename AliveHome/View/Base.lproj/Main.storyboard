@@ -66,6 +66,7 @@
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="registerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VzR-ag-CIQ"/>
+                                    <segue destination="3GG-hX-N0D" kind="show" id="q40-QX-WZr"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -102,10 +103,10 @@
             </objects>
             <point key="canvasLocation" x="1233" y="52"/>
         </scene>
-        <!--View Controller-->
+        <!--Register View Controller-->
         <scene sceneID="fmF-V7-vbQ">
             <objects>
-                <viewController id="3GG-hX-N0D" sceneMemberID="viewController">
+                <viewController id="3GG-hX-N0D" customClass="RegisterViewController" customModule="AliveHome" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nk6-tc-PCx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -115,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bCR-1V-sFx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1303" y="112"/>
+            <point key="canvasLocation" x="1959" y="37"/>
         </scene>
     </scenes>
     <resources>

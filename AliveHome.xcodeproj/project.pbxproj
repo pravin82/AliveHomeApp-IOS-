@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C80048E6209F716300811CE9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80048E5209F716300811CE9 /* RegisterViewController.swift */; };
 		C8986134209F05C4009D4848 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986133209F05C4009D4848 /* AppDelegate.swift */; };
 		C8986136209F05C4009D4848 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986135209F05C4009D4848 /* ViewController.swift */; };
 		C8986139209F05C4009D4848 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8986137209F05C4009D4848 /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C80048E5209F716300811CE9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C8986130209F05C4009D4848 /* AliveHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliveHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8986133209F05C4009D4848 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8986135209F05C4009D4848 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,7 +58,6 @@
 			children = (
 				C8986145209F08EF009D4848 /* View */,
 				C8986133209F05C4009D4848 /* AppDelegate.swift */,
-				C8986135209F05C4009D4848 /* ViewController.swift */,
 				C898613A209F05C6009D4848 /* Assets.xcassets */,
 				C898613C209F05C6009D4848 /* LaunchScreen.storyboard */,
 				C898613F209F05C6009D4848 /* Info.plist */,
@@ -67,7 +68,9 @@
 		C8986145209F08EF009D4848 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C8986135209F05C4009D4848 /* ViewController.swift */,
 				C8986137209F05C4009D4848 /* Main.storyboard */,
+				C80048E5209F716300811CE9 /* RegisterViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C80048E6209F716300811CE9 /* RegisterViewController.swift in Sources */,
 				C8986136209F05C4009D4848 /* ViewController.swift in Sources */,
 				C8986134209F05C4009D4848 /* AppDelegate.swift in Sources */,
 			);
