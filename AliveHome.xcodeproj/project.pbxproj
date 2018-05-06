@@ -54,14 +54,22 @@
 		C8986132209F05C4009D4848 /* AliveHome */ = {
 			isa = PBXGroup;
 			children = (
+				C8986145209F08EF009D4848 /* View */,
 				C8986133209F05C4009D4848 /* AppDelegate.swift */,
 				C8986135209F05C4009D4848 /* ViewController.swift */,
-				C8986137209F05C4009D4848 /* Main.storyboard */,
 				C898613A209F05C6009D4848 /* Assets.xcassets */,
 				C898613C209F05C6009D4848 /* LaunchScreen.storyboard */,
 				C898613F209F05C6009D4848 /* Info.plist */,
 			);
 			path = AliveHome;
+			sourceTree = "<group>";
+		};
+		C8986145209F08EF009D4848 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C8986137209F05C4009D4848 /* Main.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
