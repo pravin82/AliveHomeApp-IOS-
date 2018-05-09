@@ -263,7 +263,7 @@
                                                             <constraint firstItem="kcH-eB-sei" firstAttribute="leading" secondItem="pIv-BD-yJk" secondAttribute="leading" constant="8" id="wmH-lB-y9W"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GvS-nN-jeg" userLabel="New Password">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GvS-nN-jeg" userLabel="Confirm New Password">
                                                         <rect key="frame" x="0.0" y="435" width="375" height="87"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Re-Enter Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7z-5t-awX">
@@ -402,6 +402,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fha-A2-bmX">
                                                         <rect key="frame" x="0.0" y="876" width="375" height="30"/>
                                                         <state key="normal" title="Register"/>
+                                                        <connections>
+                                                            <action selector="registerButton:" destination="3GG-hX-N0D" eventType="touchUpInside" id="Q3A-R2-wZQ"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -465,7 +468,15 @@
                         <viewLayoutGuide key="safeArea" id="n9w-Us-G74"/>
                     </view>
                     <connections>
+                        <outlet property="confirmPasswordTextField" destination="LPU-JU-wAg" id="GVj-1V-5dI"/>
+                        <outlet property="emailIdTextField" destination="sgO-Bl-j2O" id="ws9-bN-djT"/>
+                        <outlet property="hardwareIdTextField" destination="dfc-Qo-gja" id="cMA-x4-8RG"/>
+                        <outlet property="passwordTextField" destination="abP-7c-ubr" id="fuA-oa-f7H"/>
+                        <outlet property="providedPasswordTextField" destination="1D0-4u-zX2" id="8Y5-qU-Ydm"/>
+                        <outlet property="providedUsernameTextField" destination="NPm-zz-u5w" id="kZk-CB-1c5"/>
+                        <outlet property="securityAnswerTextField" destination="QeU-L4-TP4" id="XIU-S3-A6z"/>
                         <outlet property="selectSecurityOutlet" destination="Die-jC-Rwt" id="aUk-9o-VQg"/>
+                        <outlet property="usernameTextField" destination="tDJ-ne-Nea" id="dTy-Vq-evH"/>
                         <outletCollection property="securityQuestionOutlet" destination="Gzn-Se-swB" collectionClass="NSMutableArray" id="t8q-gW-DSb"/>
                         <outletCollection property="securityQuestionOutlet" destination="ZYb-2z-2NA" collectionClass="NSMutableArray" id="hxk-17-Ifx"/>
                         <outletCollection property="securityQuestionOutlet" destination="wWN-ff-shx" collectionClass="NSMutableArray" id="s0R-BI-GN7"/>
