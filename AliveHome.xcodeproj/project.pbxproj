@@ -7,23 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A74C74F41D7183AD48459D16 /* Pods_AliveHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C66E3EBFA782A033E12782A9 /* Pods_AliveHome.framework */; };
 		C80048E6209F716300811CE9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80048E5209F716300811CE9 /* RegisterViewController.swift */; };
 		C8986134209F05C4009D4848 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986133209F05C4009D4848 /* AppDelegate.swift */; };
-		C8986136209F05C4009D4848 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986135209F05C4009D4848 /* ViewController.swift */; };
+		C8986136209F05C4009D4848 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986135209F05C4009D4848 /* LogInViewController.swift */; };
 		C8986139209F05C4009D4848 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8986137209F05C4009D4848 /* Main.storyboard */; };
 		C898613B209F05C6009D4848 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C898613A209F05C6009D4848 /* Assets.xcassets */; };
 		C898613E209F05C6009D4848 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C898613C209F05C6009D4848 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		83508170396E8931A17DBA2C /* Pods-AliveHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliveHome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AliveHome/Pods-AliveHome.debug.xcconfig"; sourceTree = "<group>"; };
+		C66E3EBFA782A033E12782A9 /* Pods_AliveHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AliveHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80048E5209F716300811CE9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C8986130209F05C4009D4848 /* AliveHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliveHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8986133209F05C4009D4848 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C8986135209F05C4009D4848 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C8986135209F05C4009D4848 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		C8986138209F05C4009D4848 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C898613A209F05C6009D4848 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C898613D209F05C6009D4848 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C898613F209F05C6009D4848 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0D45DBB70149640D2F3D2DC /* Pods-AliveHome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliveHome.release.xcconfig"; path = "Pods/Target Support Files/Pods-AliveHome/Pods-AliveHome.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A74C74F41D7183AD48459D16 /* Pods_AliveHome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		057A47EE482D6D3D57E184C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C66E3EBFA782A033E12782A9 /* Pods_AliveHome.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		844E1BB0CDCF21E32DFB965D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				83508170396E8931A17DBA2C /* Pods-AliveHome.debug.xcconfig */,
+				D0D45DBB70149640D2F3D2DC /* Pods-AliveHome.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C81CC25E20A1B2DB00526D6F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C80048E5209F716300811CE9 /* RegisterViewController.swift */,
+				C8986135209F05C4009D4848 /* LogInViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		C8986127209F05C4009D4848 = {
 			isa = PBXGroup;
 			children = (
 				C8986132209F05C4009D4848 /* AliveHome */,
 				C8986131209F05C4009D4848 /* Products */,
+				844E1BB0CDCF21E32DFB965D /* Pods */,
+				057A47EE482D6D3D57E184C4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +89,7 @@
 		C8986132209F05C4009D4848 /* AliveHome */ = {
 			isa = PBXGroup;
 			children = (
+				C81CC25E20A1B2DB00526D6F /* Controller */,
 				C8986145209F08EF009D4848 /* View */,
 				C8986133209F05C4009D4848 /* AppDelegate.swift */,
 				C898613A209F05C6009D4848 /* Assets.xcassets */,
@@ -68,9 +102,7 @@
 		C8986145209F08EF009D4848 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C8986135209F05C4009D4848 /* ViewController.swift */,
 				C8986137209F05C4009D4848 /* Main.storyboard */,
-				C80048E5209F716300811CE9 /* RegisterViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -82,9 +114,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C8986142209F05C6009D4848 /* Build configuration list for PBXNativeTarget "AliveHome" */;
 			buildPhases = (
+				C887D7290641CFFE9688E8B6 /* [CP] Check Pods Manifest.lock */,
 				C898612C209F05C4009D4848 /* Sources */,
 				C898612D209F05C4009D4848 /* Frameworks */,
 				C898612E209F05C4009D4848 /* Resources */,
+				D3B607D21FBA54DC94209109 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -141,13 +175,52 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C887D7290641CFFE9688E8B6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AliveHome-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D3B607D21FBA54DC94209109 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AliveHome/Pods-AliveHome-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PopOverMenu/PopOverMenu.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopOverMenu.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AliveHome/Pods-AliveHome-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C898612C209F05C4009D4848 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C80048E6209F716300811CE9 /* RegisterViewController.swift in Sources */,
-				C8986136209F05C4009D4848 /* ViewController.swift in Sources */,
+				C8986136209F05C4009D4848 /* LogInViewController.swift in Sources */,
 				C8986134209F05C4009D4848 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,6 +363,7 @@
 		};
 		C8986143209F05C6009D4848 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83508170396E8931A17DBA2C /* Pods-AliveHome.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -307,6 +381,7 @@
 		};
 		C8986144209F05C6009D4848 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0D45DBB70149640D2F3D2DC /* Pods-AliveHome.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

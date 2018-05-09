@@ -10,16 +10,28 @@ import UIKit
 
 class RegisterViewController: UIViewController {
 
+    @IBOutlet weak var selectSecurityOutlet: UIButton!
+    @IBOutlet var securityQuestionOutlet: [UIButton]!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       securityQuestionOutlet.forEach { (securityQuestion) in
+           securityQuestion.isHidden=true
+        }
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    
+    
+    @IBAction func selectSeurityButton(_ sender: UIButton) {
+       securityQuestionOutlet.forEach { (securityQuestion) in
+          securityQuestion.isHidden = !securityQuestion.isHidden
+        }
     }
+    
+
+    @IBAction func securityQuestionButton(_ sender: UIButton) {
+    }
+    
     
 
     /*

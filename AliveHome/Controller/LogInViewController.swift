@@ -22,10 +22,7 @@ class ViewController: UIViewController {
     }
     @IBAction func registerButton(_ sender: UIButton) {
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
 
 
 }
