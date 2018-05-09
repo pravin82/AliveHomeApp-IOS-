@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class RegisterViewController: UIViewController {
 
@@ -49,14 +50,8 @@ class RegisterViewController: UIViewController {
         let password=passwordTextField.text;
         let confirmPassword=confirmPasswordTextField.text;
         let securityAnswer=securityAnswerTextField.text;
+      print (  isConnectedToInternet())
         
-        if isValidPassword(Input: password!)
-        {
-            print ("valid")
-        }
-        else{
-            print ("Invalid")
-        }
     }
 //    Checking if emailId is valid
     
@@ -72,11 +67,16 @@ class RegisterViewController: UIViewController {
         let Test = NSPredicate(format:"SELF MATCHES %@", RegEx)
         return Test.evaluate(with: Input)
     }
+    func isValidSecurityAnswer(Input:String) -> Bool {
+        let RegEx = "\\A\\w{3,}\\z"
+        let Test = NSPredicate(format:"SELF MATCHES %@", RegEx)
+        return Test.evaluate(with: Input)
+    }
 //  Password should be of   Minimum 8 characters at least 1 Alphabet and 1 Special Character:
     func isValidPassword(Input:String) -> Bool{
-//        let RegEx="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
-        let RegEx1="^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}"
-        let Test = NSPredicate(format:"SELF MATCHES %@", RegEx1)
+
+        let RegEx="^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}"
+        let Test = NSPredicate(format:"SELF MATCHES %@", RegEx)
         return Test.evaluate(with:Input)
         
     }
@@ -102,6 +102,12 @@ class RegisterViewController: UIViewController {
             selectSecurityOutlet.setTitle("What is your Grandfather's name?", for: .normal)
         }
     }
+    
+    func isConnectedToInternet() -> Bool{
+        return NetworkReachabilityManager()!.isReachable
+        
+    }
+    
     
     
 
