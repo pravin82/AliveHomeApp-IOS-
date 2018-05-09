@@ -295,7 +295,7 @@
                                                                     <action selector="selectSeurityButton:" destination="3GG-hX-N0D" eventType="touchUpInside" id="OVP-l8-iHw"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzn-Se-swB">
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzn-Se-swB">
                                                                 <rect key="frame" x="0.0" y="45" width="375" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="flJ-wR-40D"/>
@@ -305,7 +305,7 @@
                                                                     <action selector="securityQuestionButton:" destination="3GG-hX-N0D" eventType="touchUpInside" id="aIH-7K-azP"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYb-2z-2NA">
+                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYb-2z-2NA">
                                                                 <rect key="frame" x="0.0" y="90" width="375" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="ExR-gg-aua"/>
@@ -315,7 +315,7 @@
                                                                     <action selector="securityQuestionButton:" destination="3GG-hX-N0D" eventType="touchUpInside" id="Rb6-fB-PPI"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWN-ff-shx">
+                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWN-ff-shx">
                                                                 <rect key="frame" x="0.0" y="135" width="375" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="OF8-21-6Ej"/>

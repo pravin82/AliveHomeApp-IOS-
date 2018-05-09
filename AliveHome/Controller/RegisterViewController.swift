@@ -30,6 +30,20 @@ class RegisterViewController: UIViewController {
     
 
     @IBAction func securityQuestionButton(_ sender: UIButton) {
+        securityQuestionOutlet.forEach { (securityQuestion) in
+            securityQuestion.isHidden=true
+        }
+        
+        if sender.tag==2{
+            selectSecurityOutlet.setTitle("What is your mother maiden name?", for: .normal)
+            
+        }
+        else if sender.tag==1{
+            selectSecurityOutlet.setTitle("What is your pet name?", for: .normal)
+        }
+        else if sender.tag==3{
+            selectSecurityOutlet.setTitle("What is your Grandfather's name?", for: .normal)
+        }
     }
     
     
