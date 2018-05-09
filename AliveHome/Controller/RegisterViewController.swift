@@ -49,15 +49,16 @@ class RegisterViewController: UIViewController {
         let password=passwordTextField.text;
         let confirmPassword=confirmPasswordTextField.text;
         let securityAnswer=securityAnswerTextField.text;
-        if   isValidUsername(Input: username!)
+        
+        if isValidPassword(Input: password!)
         {
-            print("valid")
+            print ("valid")
         }
         else{
-            print("Invalid")
+            print ("Invalid")
         }
-        
     }
+//    Checking if emailId is valid
     
     func isValidEmail(testStr:String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -65,10 +66,19 @@ class RegisterViewController: UIViewController {
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: testStr)
     }
+//    Username's lenght should be between 6 and 18 characters
     func isValidUsername(Input:String) -> Bool {
         let RegEx = "\\A\\w{6,18}\\z"
         let Test = NSPredicate(format:"SELF MATCHES %@", RegEx)
         return Test.evaluate(with: Input)
+    }
+//  Password should be of   Minimum 8 characters at least 1 Alphabet and 1 Special Character:
+    func isValidPassword(Input:String) -> Bool{
+//        let RegEx="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
+        let RegEx1="^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}"
+        let Test = NSPredicate(format:"SELF MATCHES %@", RegEx1)
+        return Test.evaluate(with:Input)
+        
     }
    
     
