@@ -69,12 +69,17 @@
                                     <segue destination="3GG-hX-N0D" kind="show" id="q40-QX-WZr"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PxS-vm-gtk">
+                                <rect key="frame" x="205" y="401" width="150" height="29"/>
+                                <state key="normal" title="Forgot Password?"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="YSJ-iX-aRS" secondAttribute="trailing" constant="32" id="5fN-uo-nHG"/>
                             <constraint firstItem="Hfm-6r-EWS" firstAttribute="top" secondItem="qX4-dx-F3o" secondAttribute="bottom" constant="97" id="6LV-4p-pPN"/>
                             <constraint firstItem="Hfm-6r-EWS" firstAttribute="top" secondItem="qX4-dx-F3o" secondAttribute="bottom" constant="97" id="6UI-qL-WYO"/>
+                            <constraint firstItem="PxS-vm-gtk" firstAttribute="top" secondItem="qX4-dx-F3o" secondAttribute="bottom" constant="20" id="6fc-1P-Y3a"/>
                             <constraint firstItem="qX4-dx-F3o" firstAttribute="top" secondItem="YSJ-iX-aRS" secondAttribute="bottom" constant="41" id="9eH-dA-i26"/>
                             <constraint firstItem="qX4-dx-F3o" firstAttribute="top" secondItem="YSJ-iX-aRS" secondAttribute="bottom" constant="41" id="Gr7-Cb-KSf"/>
                             <constraint firstItem="AdR-Ti-7hb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="64" id="Gwf-do-t1o"/>
@@ -82,10 +87,13 @@
                             <constraint firstItem="lmM-H9-38g" firstAttribute="top" secondItem="Hfm-6r-EWS" secondAttribute="bottom" constant="36" id="M4x-Y1-DPu"/>
                             <constraint firstItem="YSJ-iX-aRS" firstAttribute="top" secondItem="AdR-Ti-7hb" secondAttribute="bottom" constant="81" id="PbS-31-Opv"/>
                             <constraint firstItem="qX4-dx-F3o" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="31" id="TKE-XS-d66"/>
+                            <constraint firstItem="PxS-vm-gtk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="205" id="b5R-Rd-VhN"/>
+                            <constraint firstItem="Hfm-6r-EWS" firstAttribute="top" secondItem="PxS-vm-gtk" secondAttribute="bottom" constant="48" id="fzR-5O-vKi"/>
                             <constraint firstAttribute="trailing" secondItem="Hfm-6r-EWS" secondAttribute="trailing" constant="1" id="h1X-KW-hv5"/>
                             <constraint firstAttribute="bottom" secondItem="lmM-H9-38g" secondAttribute="bottom" constant="83" id="hTc-d2-4Xw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AdR-Ti-7hb" secondAttribute="trailing" constant="133" id="iMi-1D-lKg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qX4-dx-F3o" secondAttribute="trailing" constant="32" id="idU-0e-2CX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PxS-vm-gtk" secondAttribute="trailing" constant="20" id="khL-KD-Doh"/>
                             <constraint firstItem="YSJ-iX-aRS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="31" id="qtM-1p-8SX"/>
                             <constraint firstItem="lmM-H9-38g" firstAttribute="top" secondItem="Hfm-6r-EWS" secondAttribute="bottom" constant="36" id="t8z-mW-08F"/>
                             <constraint firstItem="Hfm-6r-EWS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="1" id="tlc-3e-kT6"/>
@@ -101,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1233" y="52"/>
+            <point key="canvasLocation" x="1232.8" y="51.724137931034484"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="fmF-V7-vbQ">
