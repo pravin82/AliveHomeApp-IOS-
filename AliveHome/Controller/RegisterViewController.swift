@@ -17,6 +17,7 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
     @IBOutlet var securityQuestionOutlet: [UIButton]!
     
     @IBOutlet weak var hardwareIdTextField: UITextField!
+     var securityQuestionText:String!;
     
     @IBOutlet weak var providedUsernameTextField: UITextField!
     
@@ -48,17 +49,35 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         let hardwareId=hardwareIdTextField.text;
         let providedUsername=providedUsernameTextField.text;
         let providedPassword=providedPasswordTextField.text;
-        let securityQuestionText:String;
+       
         let username=usernameTextField.text;
         let emailId=emailIdTextField.text;
         let password=passwordTextField.text;
         let confirmPassword=confirmPasswordTextField.text;
         let securityAnswer=securityAnswerTextField.text;
+        let sharedAesKey:String;
+        sharedAesKey=sharedKeyGenerator()
         if isValidEmail(testStr: emailId!) && isValidUsername(Input: username!) && isValidSecurityAnswer(Input: securityAnswer!) && isValidPassword(Input: password!) && password==confirmPassword {
+            let message1:String;
+            let message2:String;
+            let message3:String;
+            let message4:String;
+            let message5:String;
+            let message6:String;
+            let message7:String;
             let message:String;
-            message="NUS-" + hardwareId + "-" + providedUsername + "-" +
-                providedPassword + "-" + username + "-" + password + "-" + confirmPassword + "-" +
-                securityQuestionText + "-" + securityAnwser + "-" + emailId + "-" + shared_aes_key;
+            
+            message1 = "NUS-" + hardwareId! + "-" + providedUsername! + "-"
+                
+            message2=providedPassword! + "-"
+            message3=username! + "-" + password! + "-"
+            message4=confirmPassword! + "-"+securityQuestionText
+            message5="-" + securityAnswer! + "-"
+            message6=emailId! + "-" + sharedAesKey
+            message=message1+message2+message3+message4+message5+message6
+            
+            
+            
             
             
         }
@@ -166,7 +185,23 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("got some data: \(data.count)")
     }
-    
+    func sharedKeyGenerator() -> String {
+        let randString = "abcdefghijklmnopqrstuvwxyz0123456789{}[],.!@#$%^&*()"
+        let arrayRand=Array(randString);
+        var randInt=arc4random()
+        var temphcar:Character
+        var stringBuilder=""
+        for index in 1...12 {
+            temphcar=arrayRand[Int(arc4random_uniform(53))]
+            stringBuilder.append(temphcar)
+        }
+        
+        return stringBuilder
+        
+        
+        
+        
+    }
     
     
 
