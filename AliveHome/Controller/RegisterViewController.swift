@@ -48,15 +48,25 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         let hardwareId=hardwareIdTextField.text;
         let providedUsername=providedUsernameTextField.text;
         let providedPassword=providedPasswordTextField.text;
+        let securityQuestionText:String;
         let username=usernameTextField.text;
         let emailId=emailIdTextField.text;
         let password=passwordTextField.text;
         let confirmPassword=confirmPasswordTextField.text;
         let securityAnswer=securityAnswerTextField.text;
-        loginToServer(message: "I am boss")
+        if isValidEmail(testStr: emailId!) && isValidUsername(Input: username!) && isValidSecurityAnswer(Input: securityAnswer!) && isValidPassword(Input: password!) && password==confirmPassword {
+            let message:String;
+            message="NUS-" + hardwareId + "-" + providedUsername + "-" +
+                providedPassword + "-" + username + "-" + password + "-" + confirmPassword + "-" +
+                securityQuestionText + "-" + securityAnwser + "-" + emailId + "-" + shared_aes_key;
+            
+            
+        }
+            
+    }
      
         
-    }
+    
 //    Checking if emailId is valid
     
     func isValidEmail(testStr:String) -> Bool {
@@ -117,13 +127,17 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         
         if sender.tag==2{
             selectSecurityOutlet.setTitle("What is your mother maiden name?", for: .normal)
+            securityQuestionText="What is your mother maiden name?"
+            
             
         }
         else if sender.tag==1{
             selectSecurityOutlet.setTitle("What is your pet name?", for: .normal)
+            securityQuestionText="What is your pet name?"
         }
         else if sender.tag==3{
             selectSecurityOutlet.setTitle("What is your Grandfather's name?", for: .normal)
+            securityQuestionText="What is your Grandfather's name?"
         }
     }
     
@@ -137,6 +151,7 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         socket.delegate=self
         socket.connect()
         socket.write(string: message)
+        socket.disconnect()
     }
 //  Starscream function required to Implement.
     func websocketDidConnect(socket: WebSocketClient) {
