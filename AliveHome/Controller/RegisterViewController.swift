@@ -8,8 +8,10 @@
 
 import UIKit
 import Alamofire
+import RNCryptor
+import Starscream
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController,WebSocketDelegate {
 
     @IBOutlet weak var selectSecurityOutlet: UIButton!
     @IBOutlet var securityQuestionOutlet: [UIButton]!
@@ -28,10 +30,11 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
        securityQuestionOutlet.forEach { (securityQuestion) in
            securityQuestion.isHidden=true
+        
         }
         // Do any additional setup after loading the view.
      
-        
+       
     }
     
     
@@ -50,7 +53,8 @@ class RegisterViewController: UIViewController {
         let password=passwordTextField.text;
         let confirmPassword=confirmPasswordTextField.text;
         let securityAnswer=securityAnswerTextField.text;
-      print (  isConnectedToInternet())
+        loginToServer(message: "I am boss")
+     
         
     }
 //    Checking if emailId is valid
@@ -83,7 +87,27 @@ class RegisterViewController: UIViewController {
    
     
     
-   
+    func sharedKeyGenerator(){
+        let rand = "abcdefghijklmnopqrstuvwxyz0123456789{}[],.!@#$%^&*()"
+        let charArray = Array(rand)
+        
+        
+        
+    }
+    func encryptMessage(message: String, encryptionKey: String) throws -> String {
+        let messageData = message.data(using: .utf8)!
+        let cipherData = RNCryptor.encrypt(data: messageData, withPassword: encryptionKey)
+        return cipherData.base64EncodedString()
+    }
+    func decryptMessage(encryptedMessage: String, encryptionKey: String) throws -> String {
+        
+        let encryptedData = Data.init(base64Encoded: encryptedMessage)!
+        let decryptedData = try RNCryptor.decrypt(data: encryptedData, withPassword: encryptionKey)
+        let decryptedString = String(data: decryptedData, encoding: .utf8)!
+        
+        return decryptedString
+    }
+    
     
 
     @IBAction func securityQuestionButton(_ sender: UIButton) {
@@ -106,6 +130,26 @@ class RegisterViewController: UIViewController {
     func isConnectedToInternet() -> Bool{
         return NetworkReachabilityManager()!.isReachable
         
+    }
+    func loginToServer(message:String){
+        let wsuri = "ws://alivehome.iitkgp.ac.in:81"
+      let  socket = WebSocket(url: URL(string: wsuri)!)
+        socket.delegate=self
+        socket.connect()
+        socket.write(string: message)
+    }
+//  Starscream function required to Implement.
+    func websocketDidConnect(socket: WebSocketClient) {
+        print("websocket is connected")
+    }
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        print("websocket is disconnected: \(error?.localizedDescription)")
+    }
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print("got some text: \(text)")
+    }
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        print("got some data: \(data.count)")
     }
     
     
