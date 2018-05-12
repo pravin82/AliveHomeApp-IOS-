@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		A74C74F41D7183AD48459D16 /* Pods_AliveHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C66E3EBFA782A033E12782A9 /* Pods_AliveHome.framework */; };
 		C80048E6209F716300811CE9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80048E5209F716300811CE9 /* RegisterViewController.swift */; };
+		C847D21920A572AC008B35B2 /* AliveHomeFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = C847D21720A572AC008B35B2 /* AliveHomeFrame.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C847D21C20A572AC008B35B2 /* AliveHomeFrame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C847D21520A572AC008B35B2 /* AliveHomeFrame.framework */; };
+		C847D21D20A572AC008B35B2 /* AliveHomeFrame.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C847D21520A572AC008B35B2 /* AliveHomeFrame.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C8986134209F05C4009D4848 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986133209F05C4009D4848 /* AppDelegate.swift */; };
 		C8986136209F05C4009D4848 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986135209F05C4009D4848 /* LogInViewController.swift */; };
 		C8986139209F05C4009D4848 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8986137209F05C4009D4848 /* Main.storyboard */; };
@@ -16,10 +19,37 @@
 		C898613E209F05C6009D4848 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C898613C209F05C6009D4848 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C847D21A20A572AC008B35B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8986128209F05C4009D4848 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C847D21420A572AC008B35B2;
+			remoteInfo = AliveHomeFrame;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C847D22120A572AC008B35B2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C847D21D20A572AC008B35B2 /* AliveHomeFrame.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		83508170396E8931A17DBA2C /* Pods-AliveHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliveHome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AliveHome/Pods-AliveHome.debug.xcconfig"; sourceTree = "<group>"; };
 		C66E3EBFA782A033E12782A9 /* Pods_AliveHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AliveHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80048E5209F716300811CE9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		C847D21520A572AC008B35B2 /* AliveHomeFrame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliveHomeFrame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C847D21720A572AC008B35B2 /* AliveHomeFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliveHomeFrame.h; sourceTree = "<group>"; };
+		C847D21820A572AC008B35B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8986130209F05C4009D4848 /* AliveHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliveHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8986133209F05C4009D4848 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8986135209F05C4009D4848 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -31,11 +61,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C847D21120A572AC008B35B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C898612D209F05C4009D4848 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A74C74F41D7183AD48459D16 /* Pods_AliveHome.framework in Frameworks */,
+				C847D21C20A572AC008B35B2 /* AliveHomeFrame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,10 +106,20 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		C847D21620A572AC008B35B2 /* AliveHomeFrame */ = {
+			isa = PBXGroup;
+			children = (
+				C847D21720A572AC008B35B2 /* AliveHomeFrame.h */,
+				C847D21820A572AC008B35B2 /* Info.plist */,
+			);
+			path = AliveHomeFrame;
+			sourceTree = "<group>";
+		};
 		C8986127209F05C4009D4848 = {
 			isa = PBXGroup;
 			children = (
 				C8986132209F05C4009D4848 /* AliveHome */,
+				C847D21620A572AC008B35B2 /* AliveHomeFrame */,
 				C8986131209F05C4009D4848 /* Products */,
 				844E1BB0CDCF21E32DFB965D /* Pods */,
 				057A47EE482D6D3D57E184C4 /* Frameworks */,
@@ -82,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				C8986130209F05C4009D4848 /* AliveHome.app */,
+				C847D21520A572AC008B35B2 /* AliveHomeFrame.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,7 +158,36 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		C847D21220A572AC008B35B2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C847D21920A572AC008B35B2 /* AliveHomeFrame.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		C847D21420A572AC008B35B2 /* AliveHomeFrame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C847D22020A572AC008B35B2 /* Build configuration list for PBXNativeTarget "AliveHomeFrame" */;
+			buildPhases = (
+				C847D21020A572AC008B35B2 /* Sources */,
+				C847D21120A572AC008B35B2 /* Frameworks */,
+				C847D21220A572AC008B35B2 /* Headers */,
+				C847D21320A572AC008B35B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AliveHomeFrame;
+			productName = AliveHomeFrame;
+			productReference = C847D21520A572AC008B35B2 /* AliveHomeFrame.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		C898612F209F05C4009D4848 /* AliveHome */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C8986142209F05C6009D4848 /* Build configuration list for PBXNativeTarget "AliveHome" */;
@@ -119,10 +197,12 @@
 				C898612D209F05C4009D4848 /* Frameworks */,
 				C898612E209F05C4009D4848 /* Resources */,
 				D3B607D21FBA54DC94209109 /* [CP] Embed Pods Frameworks */,
+				C847D22120A572AC008B35B2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C847D21B20A572AC008B35B2 /* PBXTargetDependency */,
 			);
 			name = AliveHome;
 			productName = AliveHome;
@@ -139,6 +219,9 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Pravin Mishra";
 				TargetAttributes = {
+					C847D21420A572AC008B35B2 = {
+						CreatedOnToolsVersion = 9.3;
+					};
 					C898612F209F05C4009D4848 = {
 						CreatedOnToolsVersion = 9.3;
 					};
@@ -158,11 +241,19 @@
 			projectRoot = "";
 			targets = (
 				C898612F209F05C4009D4848 /* AliveHome */,
+				C847D21420A572AC008B35B2 /* AliveHomeFrame */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C847D21320A572AC008B35B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C898612E209F05C4009D4848 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -221,6 +312,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C847D21020A572AC008B35B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C898612C209F05C4009D4848 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -232,6 +330,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C847D21B20A572AC008B35B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C847D21420A572AC008B35B2 /* AliveHomeFrame */;
+			targetProxy = C847D21A20A572AC008B35B2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C8986137209F05C4009D4848 /* Main.storyboard */ = {
@@ -253,6 +359,60 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C847D21E20A572AC008B35B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = AliveHomeFrame/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pravin.AliveHomeFrame;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C847D21F20A572AC008B35B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = AliveHomeFrame/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pravin.AliveHomeFrame;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		C8986140209F05C6009D4848 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -374,7 +534,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AliveHome/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pravin.AliveHome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -389,7 +552,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AliveHome/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pravin.AliveHome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -400,6 +566,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C847D22020A572AC008B35B2 /* Build configuration list for PBXNativeTarget "AliveHomeFrame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C847D21E20A572AC008B35B2 /* Debug */,
+				C847D21F20A572AC008B35B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C898612B209F05C4009D4848 /* Build configuration list for PBXProject "AliveHome" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

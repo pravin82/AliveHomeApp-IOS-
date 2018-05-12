@@ -27,6 +27,8 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var securityAnswerTextField: UITextField!
+    let sharedAesKey:String;
+    sharedAesKey=sharedKeyGenerator()
     override func viewDidLoad() {
         super.viewDidLoad()
        securityQuestionOutlet.forEach { (securityQuestion) in
@@ -55,8 +57,7 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         let password=passwordTextField.text;
         let confirmPassword=confirmPasswordTextField.text;
         let securityAnswer=securityAnswerTextField.text;
-        let sharedAesKey:String;
-        sharedAesKey=sharedKeyGenerator()
+        
         if isValidEmail(testStr: emailId!) && isValidUsername(Input: username!) && isValidSecurityAnswer(Input: securityAnswer!) && isValidPassword(Input: password!) && password==confirmPassword {
             let message1:String;
             let message2:String;
@@ -75,6 +76,12 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
             message5="-" + securityAnswer! + "-"
             message6=emailId! + "-" + sharedAesKey
             message=message1+message2+message3+message4+message5+message6
+            do{ let encryptedMessage=try encryptMessage(message: message, encryptionKey: sharedAesKey)}
+            catch{
+                print("Unable to encrypt message")
+            }
+                
+            
             
             
             
@@ -116,13 +123,7 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
    
     
     
-    func sharedKeyGenerator(){
-        let rand = "abcdefghijklmnopqrstuvwxyz0123456789{}[],.!@#$%^&*()"
-        let charArray = Array(rand)
-        
-        
-        
-    }
+    
     func encryptMessage(message: String, encryptionKey: String) throws -> String {
         let messageData = message.data(using: .utf8)!
         let cipherData = RNCryptor.encrypt(data: messageData, withPassword: encryptionKey)
@@ -180,7 +181,12 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         print("websocket is disconnected: \(error?.localizedDescription)")
     }
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("got some text: \(text)")
+        do{
+          try  decryptMessage(encryptedMessage: text, encryptionKey:sharedAesKey )
+        }
+        catch{
+            print ("Message was not decrypted  by the server")
+        }
     }
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("got some data: \(data.count)")
@@ -188,7 +194,7 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
     func sharedKeyGenerator() -> String {
         let randString = "abcdefghijklmnopqrstuvwxyz0123456789{}[],.!@#$%^&*()"
         let arrayRand=Array(randString);
-        var randInt=arc4random()
+        
         var temphcar:Character
         var stringBuilder=""
         for index in 1...12 {
