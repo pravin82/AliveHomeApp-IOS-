@@ -27,8 +27,8 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var securityAnswerTextField: UITextField!
-    let sharedAesKey:String;
-    sharedAesKey=sharedKeyGenerator()
+     var sharedAesKey:String!;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        securityQuestionOutlet.forEach { (securityQuestion) in
@@ -37,7 +37,7 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         }
         // Do any additional setup after loading the view.
      
-       
+       sharedAesKey=sharedKeyGenerator()
     }
     
     
