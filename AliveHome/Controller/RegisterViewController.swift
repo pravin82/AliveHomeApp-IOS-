@@ -88,8 +88,8 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
             message5="-" + securityAnswer! + "-"
             message6=emailId! + "-" + sharedAesKey
             message=message1+message2+message3+message4+message5+message6
-            do{ let encryptedMessage=try encryptMessage(message: message, encryptionKey: sharedAesKey)
-                loginToServer(message: encryptedMessage)
+            do{
+                loginToServer()
             }
             catch{
                 print("Unable to encrypt message")
@@ -179,7 +179,7 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         return NetworkReachabilityManager()!.isReachable
         
     }
-    func loginToServer(message:String){
+    func loginToServer(){
         
         print("login function called")
         let wsuri = "ws://alivehome.iitkgp.ac.in:81"
@@ -199,7 +199,8 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
        print ("websocket is connected")
         if socket.isConnected{
-            socket.write(string: message)
+            let encryptedMessage = try! encryptMessage(message: message, encryptionKey: sharedAesKey)
+            socket.write(string: encryptedMessage)
             print("Ready to write the message")
         }
         else{
