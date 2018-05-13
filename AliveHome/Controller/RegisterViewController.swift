@@ -31,6 +31,7 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
     @IBOutlet weak var securityAnswerTextField: UITextField!
      var sharedAesKey:String!;
     var socket:WebSocket!;
+    var message:String!;
     
     
     
@@ -77,7 +78,7 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
             let message5:String;
             let message6:String;
             let message7:String;
-            let message:String;
+            
             
             message1 = "NUS-" + hardwareId! + "-" + providedUsername! + "-"
                 
@@ -185,6 +186,7 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         socket = WebSocket(url: URL(string: wsuri)!)
         socket.delegate=self
         socket.connect()
+       
         
         
         socket.disconnect()
@@ -196,6 +198,14 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
     //  Starscream function required to Implement.
     func websocketDidConnect(socket: WebSocketClient) {
        print ("websocket is connected")
+        if socket.isConnected{
+            socket.write(string: message)
+            print("Ready to write the message")
+        }
+        else{
+            print("not ready to write the message")
+        }
+        
         
         
     }
