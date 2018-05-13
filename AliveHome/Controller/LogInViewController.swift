@@ -45,13 +45,32 @@ class ViewController: UIViewController,WebSocketDelegate {
     
     @IBAction func forgotPasswordButton(_ sender: Any) {
     }
+    var sharedAesKey:String!
     
     func logIntoServer(){
         let  wsuri = "ws://alivehome.iitkgp.ac.in:81"
         socket = WebSocket(url: URL(string: wsuri)!)
+        sharedAesKey=sharedKeyGenerator()
         socket.delegate=self
         socket.connect()
         socket.disconnect()
+        
+        
+        
+    }
+    func sharedKeyGenerator() -> String {
+        let randString = "abcdefghijklmnopqrstuvwxyz0123456789{}[],.!@#$%^&*()"
+        let arrayRand=Array(randString);
+        
+        var temphcar:Character
+        var stringBuilder=""
+        for index in 1...12 {
+            temphcar=arrayRand[Int(arc4random_uniform(52))]
+            stringBuilder.append(temphcar)
+        }
+        
+        return stringBuilder
+        
         
         
         
