@@ -12,6 +12,8 @@ import RNCryptor
 import Starscream
 
 class RegisterViewController: UIViewController,WebSocketDelegate {
+    
+    
 
     @IBOutlet weak var selectSecurityOutlet: UIButton!
     @IBOutlet var securityQuestionOutlet: [UIButton]!
@@ -28,6 +30,11 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var securityAnswerTextField: UITextField!
      var sharedAesKey:String!;
+    var socket:WebSocket!;
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +45,11 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         // Do any additional setup after loading the view.
      
        sharedAesKey=sharedKeyGenerator()
+      
+        
+        
     }
+    
     
     
     
@@ -76,14 +87,16 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
             message5="-" + securityAnswer! + "-"
             message6=emailId! + "-" + sharedAesKey
             message=message1+message2+message3+message4+message5+message6
-            do{ let encryptedMessage=try encryptMessage(message: message, encryptionKey: sharedAesKey)}
+            do{ let encryptedMessage=try encryptMessage(message: message, encryptionKey: sharedAesKey)
+                loginToServer(message: encryptedMessage)
+            }
             catch{
                 print("Unable to encrypt message")
             }
-                
             
             
             
+            print("Register button pressed")
             
             
             
@@ -121,7 +134,7 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         
     }
    
-    
+   
     
     
     func encryptMessage(message: String, encryptionKey: String) throws -> String {
@@ -166,16 +179,25 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         
     }
     func loginToServer(message:String){
+        
+        print("login function called")
         let wsuri = "ws://alivehome.iitkgp.ac.in:81"
-      let  socket = WebSocket(url: URL(string: wsuri)!)
+        socket = WebSocket(url: URL(string: wsuri)!)
         socket.delegate=self
         socket.connect()
-        socket.write(string: message)
+        
+        
         socket.disconnect()
+        
     }
-//  Starscream function required to Implement.
+
+    
+    
+    //  Starscream function required to Implement.
     func websocketDidConnect(socket: WebSocketClient) {
-        print("websocket is connected")
+       print ("websocket is connected")
+        
+        
     }
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         print("websocket is disconnected: \(error?.localizedDescription)")
@@ -198,7 +220,7 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         var temphcar:Character
         var stringBuilder=""
         for index in 1...12 {
-            temphcar=arrayRand[Int(arc4random_uniform(53))]
+            temphcar=arrayRand[Int(arc4random_uniform(52))]
             stringBuilder.append(temphcar)
         }
         
