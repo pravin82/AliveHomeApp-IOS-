@@ -13,23 +13,41 @@ import RNCryptor
 class ViewController: UIViewController,WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
         print("Websocket connected")
+        socket.write(string: message)
+        
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        print ("server got disconnected")
         
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print ("client received the message")
         
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        print ("client recived the data")
         
     }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let  username = usernameText.text
+        var  sharedAesKey=sharedKeyGenerator()
+        let passwordtext=password.text
+        let message1:String;
+        let message2:String;
+        let message3:String;
+        message1="LOGI_"+username!
+        message2="_"+passwordtext!
+        message3="_"+sharedAesKey
+        
+        
+        message = try?( encryptMessage(message: message1+message2+message3, encryptionKey:sharedAesKey ))
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -47,6 +65,8 @@ class ViewController: UIViewController,WebSocketDelegate {
     @IBAction func forgotPasswordButton(_ sender: Any) {
     }
     var sharedAesKey:String!
+   
+    var message:String!
     
     func logIntoServer(){
         let  wsuri = "ws://alivehome.iitkgp.ac.in:81"
