@@ -12,6 +12,8 @@
 		C847D21920A572AC008B35B2 /* AliveHomeFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = C847D21720A572AC008B35B2 /* AliveHomeFrame.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C847D21C20A572AC008B35B2 /* AliveHomeFrame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C847D21520A572AC008B35B2 /* AliveHomeFrame.framework */; };
 		C847D21D20A572AC008B35B2 /* AliveHomeFrame.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C847D21520A572AC008B35B2 /* AliveHomeFrame.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C84DCF0120D0DCFA0008AC0C /* CryptoExportImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84DCF0020D0DCFA0008AC0C /* CryptoExportImportManager.swift */; };
+		C84DCF0B20D114510008AC0C /* public_key.der in Resources */ = {isa = PBXBuildFile; fileRef = C84DCF0920D1143A0008AC0C /* public_key.der */; };
 		C8986134209F05C4009D4848 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986133209F05C4009D4848 /* AppDelegate.swift */; };
 		C8986136209F05C4009D4848 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986135209F05C4009D4848 /* LogInViewController.swift */; };
 		C8986139209F05C4009D4848 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8986137209F05C4009D4848 /* Main.storyboard */; };
@@ -50,6 +52,8 @@
 		C847D21520A572AC008B35B2 /* AliveHomeFrame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliveHomeFrame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C847D21720A572AC008B35B2 /* AliveHomeFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliveHomeFrame.h; sourceTree = "<group>"; };
 		C847D21820A572AC008B35B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C84DCF0020D0DCFA0008AC0C /* CryptoExportImportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoExportImportManager.swift; sourceTree = "<group>"; };
+		C84DCF0920D1143A0008AC0C /* public_key.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = public_key.der; path = "../../Pods/Target Support Files/Pods-AliveHome/public_key.der"; sourceTree = "<group>"; };
 		C8986130209F05C4009D4848 /* AliveHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliveHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8986133209F05C4009D4848 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8986135209F05C4009D4848 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -100,8 +104,10 @@
 		C81CC25E20A1B2DB00526D6F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C84DCF0920D1143A0008AC0C /* public_key.der */,
 				C80048E5209F716300811CE9 /* RegisterViewController.swift */,
 				C8986135209F05C4009D4848 /* LogInViewController.swift */,
+				C84DCF0020D0DCFA0008AC0C /* CryptoExportImportManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -260,6 +266,7 @@
 			files = (
 				C898613E209F05C6009D4848 /* LaunchScreen.storyboard in Resources */,
 				C898613B209F05C6009D4848 /* Assets.xcassets in Resources */,
+				C84DCF0B20D114510008AC0C /* public_key.der in Resources */,
 				C8986139209F05C4009D4848 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +303,7 @@
 				"${BUILT_PRODUCTS_DIR}/PopOverMenu/PopOverMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyRSA/SwiftyRSA.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -303,6 +311,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopOverMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyRSA.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -326,6 +335,7 @@
 				C80048E6209F716300811CE9 /* RegisterViewController.swift in Sources */,
 				C8986136209F05C4009D4848 /* LogInViewController.swift in Sources */,
 				C8986134209F05C4009D4848 /* AppDelegate.swift in Sources */,
+				C84DCF0120D0DCFA0008AC0C /* CryptoExportImportManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

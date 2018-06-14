@@ -6,14 +6,30 @@
 //  Copyright © 2018 Pravin Mishra. All rights reserved.
 //
 
+import Security
+import Foundation
 import UIKit
 import Starscream
 import RNCryptor
+import SwiftyRSA
 
 class ViewController: UIViewController,WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
         print("Websocket connected")
-        socket.write(string: message)
+        let  username = usernameText.text
+        var  sharedAesKey=sharedKeyGenerator()
+        let passwordtext=password.text
+        let message1:String;
+        let message2:String;
+        let message3:String;
+        let message4:String;
+        message1="LOGI-"+username!
+        message2="-"+passwordtext!
+        message3="-"+sharedAesKey
+        let pk = try? PublicKey(derNamed: "public_key")
+        message4 = try!( encryption(message: message1+message2+message3,publicKey: pk! ))
+        print("encrypted data :"+message4)
+        socket.write(string: message4)
         
     }
     
@@ -24,6 +40,8 @@ class ViewController: UIViewController,WebSocketDelegate {
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         print ("client received the message")
+     let  decryptedMessage = try? decryptMessage(encryptedMessage: text, encryptionKey: sharedAesKey)
+        print(decryptedMessage)
         
     }
     
@@ -35,18 +53,23 @@ class ViewController: UIViewController,WebSocketDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let  username = usernameText.text
-        var  sharedAesKey=sharedKeyGenerator()
-        let passwordtext=password.text
-        let message1:String;
-        let message2:String;
-        let message3:String;
-        message1="LOGI_"+username!
-        message2="_"+passwordtext!
-        message3="_"+sharedAesKey
         
+        let url:CFURL
+        typealias SecTransformRef = CFTypeRef
+       /* url = CFURLCreateFromFileSystemRepresentation (//yahaa error
+            kCFAllocatorDefault,
+            "public_key",
+           12,
+            false);
+        let cfrs:CFReadStream
+        cfrs = CFReadStreamCreateWithFile(
+            kCFAllocatorDefault,
+            url);
+        let readTransform:SecTransformRef*/
         
-        message = try?( encryptMessage(message: message1+message2+message3, encryptionKey:sharedAesKey ))
+       
+        
+       
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -67,13 +90,20 @@ class ViewController: UIViewController,WebSocketDelegate {
     var sharedAesKey:String!
    
     var message:String!
+    let importExportManager = CryptoExportImportManager()
+  //  if  let publicKeyRef = importExportManager.importPublicKeyReferenceFromDERCertificate(certData) {
+        // use publicKeyRef to sign, decrypt, etc..
+  //  } else { ... handle error ... }
+    
     
     func logIntoServer(){
+       
         let  wsuri = "ws://alivehome.iitkgp.ac.in:81"
         socket = WebSocket(url: URL(string: wsuri)!)
         sharedAesKey=sharedKeyGenerator()
         socket.delegate=self
         socket.connect()
+        
         socket.disconnect()
         
         
@@ -100,6 +130,16 @@ class ViewController: UIViewController,WebSocketDelegate {
         let messageData = message.data(using: .utf8)!
         let cipherData = RNCryptor.encrypt(data: messageData, withPassword: encryptionKey)
         return cipherData.base64EncodedString()
+    }
+    func encryption(message:String,publicKey:PublicKey) throws ->String{
+       
+        let clear = try ClearMessage(string: message, using: .utf8)
+        let encrypted = try clear.encrypted(with: publicKey, padding: .OAEP)
+        
+        // Then you can use:
+        
+        let base64String = encrypted.base64String
+        return base64String
     }
     func decryptMessage(encryptedMessage: String, encryptionKey: String) throws -> String {
         
