@@ -110,9 +110,16 @@
 				C80048E5209F716300811CE9 /* RegisterViewController.swift */,
 				C8986135209F05C4009D4848 /* LogInViewController.swift */,
 				C84DCF0020D0DCFA0008AC0C /* CryptoExportImportManager.swift */,
-				C876BA3C20D28D6F00141286 /* string+encryption.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		C8389CE120D42339005E731D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C876BA3C20D28D6F00141286 /* string+encryption.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		C847D21620A572AC008B35B2 /* AliveHomeFrame */ = {
@@ -147,6 +154,7 @@
 		C8986132209F05C4009D4848 /* AliveHome */ = {
 			isa = PBXGroup;
 			children = (
+				C8389CE120D42339005E731D /* Extension */,
 				C81CC25E20A1B2DB00526D6F /* Controller */,
 				C8986145209F08EF009D4848 /* View */,
 				C8986133209F05C4009D4848 /* AppDelegate.swift */,
