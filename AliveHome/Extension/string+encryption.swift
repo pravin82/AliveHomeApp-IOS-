@@ -9,6 +9,7 @@
 import Foundation
 
 import CryptoSwift
+import Security
 
 extension String {
     func base64Encoded() -> String? {
@@ -33,9 +34,24 @@ extension String {
         
         
         let result1 = String(String(result!).dropFirst(16))
-        let parts = result1.components(separatedBy: "-")
-        let bl = parts[0]=="NOTIFY"
-        print(bl)
-        return(parts[0])
+        
+        
+        return(result1)
     }
+    func aesEncrypt(key:Array<UInt8>,iv:Array<UInt8>) throws ->String{
+        let stringLength=self.count
+        let val=(16-stringLength%16)
+        let pString=Character(UnicodeScalar(val)!)
+        let pString1=String(repeating: pString, count: 16)
+        let paddedString=pString1+self
+        print("length of paddedString:  \(paddedString.count)")
+        let data=paddedString.data(using: .utf8)
+        let bytes=[UInt8](data!)
+        let enc=try AES(key:key,blockMode:.CBC(iv:iv),padding: .pkcs5).encrypt(bytes)
+        let encryptedData = Data(enc)
+        return encryptedData.base64EncodedString()
+        
+        
+    }
+   
 }

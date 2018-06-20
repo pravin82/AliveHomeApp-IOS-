@@ -16,10 +16,12 @@
 		C84DCF0B20D114510008AC0C /* public_key.der in Resources */ = {isa = PBXBuildFile; fileRef = C84DCF0920D1143A0008AC0C /* public_key.der */; };
 		C876BA3D20D28D6F00141286 /* string+encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = C876BA3C20D28D6F00141286 /* string+encryption.swift */; };
 		C8986134209F05C4009D4848 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986133209F05C4009D4848 /* AppDelegate.swift */; };
-		C8986136209F05C4009D4848 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986135209F05C4009D4848 /* LogInViewController.swift */; };
+		C8986136209F05C4009D4848 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986135209F05C4009D4848 /* ViewController.swift */; };
 		C8986139209F05C4009D4848 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8986137209F05C4009D4848 /* Main.storyboard */; };
 		C898613B209F05C6009D4848 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C898613A209F05C6009D4848 /* Assets.xcassets */; };
 		C898613E209F05C6009D4848 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C898613C209F05C6009D4848 /* LaunchScreen.storyboard */; };
+		C8CA8C0720D4D11F00DBD68A /* MainUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CA8C0620D4D11F00DBD68A /* MainUIViewController.swift */; };
+		C8CA8C0920D4D9FB00DBD68A /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CA8C0820D4D9FB00DBD68A /* MainService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,11 +60,13 @@
 		C876BA3C20D28D6F00141286 /* string+encryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "string+encryption.swift"; sourceTree = "<group>"; };
 		C8986130209F05C4009D4848 /* AliveHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliveHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8986133209F05C4009D4848 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C8986135209F05C4009D4848 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		C8986135209F05C4009D4848 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C8986138209F05C4009D4848 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C898613A209F05C6009D4848 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C898613D209F05C6009D4848 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C898613F209F05C6009D4848 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8CA8C0620D4D11F00DBD68A /* MainUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUIViewController.swift; sourceTree = "<group>"; };
+		C8CA8C0820D4D9FB00DBD68A /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
 		D0D45DBB70149640D2F3D2DC /* Pods-AliveHome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliveHome.release.xcconfig"; path = "Pods/Target Support Files/Pods-AliveHome/Pods-AliveHome.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,8 +112,10 @@
 			children = (
 				C84DCF0920D1143A0008AC0C /* public_key.der */,
 				C80048E5209F716300811CE9 /* RegisterViewController.swift */,
-				C8986135209F05C4009D4848 /* LogInViewController.swift */,
+				C8986135209F05C4009D4848 /* ViewController.swift */,
 				C84DCF0020D0DCFA0008AC0C /* CryptoExportImportManager.swift */,
+				C8CA8C0620D4D11F00DBD68A /* MainUIViewController.swift */,
+				C8CA8C0820D4D9FB00DBD68A /* MainService.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -345,9 +351,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8CA8C0920D4D9FB00DBD68A /* MainService.swift in Sources */,
 				C80048E6209F716300811CE9 /* RegisterViewController.swift in Sources */,
-				C8986136209F05C4009D4848 /* LogInViewController.swift in Sources */,
+				C8986136209F05C4009D4848 /* ViewController.swift in Sources */,
 				C876BA3D20D28D6F00141286 /* string+encryption.swift in Sources */,
+				C8CA8C0720D4D11F00DBD68A /* MainUIViewController.swift in Sources */,
 				C8986134209F05C4009D4848 /* AppDelegate.swift in Sources */,
 				C84DCF0120D0DCFA0008AC0C /* CryptoExportImportManager.swift in Sources */,
 			);

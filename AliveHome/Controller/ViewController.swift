@@ -15,26 +15,38 @@ import SwiftyRSA
 import CryptoSwift
 
 
-
+let mySpecialNotificationKey = "specialNotificationKey"
+protocol DevStateDelegate{
+    func changeBulb(state:String)
+}
 class ViewController: UIViewController,WebSocketDelegate {
      lazy var sharedAesKey=sharedKeyGenerator()
+     lazy var username=usernameText.text
+     lazy var transfer_session=""
+     lazy var  pk = try? PublicKey(derNamed: "public_key")
+    
+    
     
     func websocketDidConnect(socket: WebSocketClient) {
         print("Websocket connected")
-        let  username = usernameText.text
+        let username=usernameText.text
        
         let passwordtext=password.text
         let message1:String;
         let message2:String;
         let message3:String;
         let message4:String;
+        let message5:String;
+        let message6:String;
         message1="LOGI-"+username!
         message2="-"+passwordtext!
         message3="-"+sharedAesKey
-        let pk = try? PublicKey(derNamed: "public_key")
+        message5="ENQ-"+username!+"-"+sharedAesKey
         message4 = try!( encryption(message: message1+message2+message3,publicKey: pk! ))
+        message6=try!( encryption(message: message5,publicKey: pk! ))
         print("encrypted data :"+message4)
         socket.write(string: message4)
+        socket.write(string: message6)
         
     }
     
@@ -44,29 +56,20 @@ class ViewController: UIViewController,WebSocketDelegate {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print ("client received the message")
-        print (sharedAesKey)
         var array = [UInt8](repeating: 0x00, count: 16)
-        let text1=text.base64Encoded()
-        print("text: "+text)
-        print("text1: "+text1!)
         let iv=array.toBase64()
         var digest = SHA2(variant: .sha256)
-        
         let array1: [UInt8] = Array(sharedAesKey.utf8)
+        
+        
         do {let partial1 = try digest.update(withBytes:array1 )
             let result=try digest.finish()
-            print("result \(result)")
             let decryptedMessage1:String!
-             decryptedMessage1 = try? text.aesDecrypt(key: result, iv: array)
+            decryptedMessage1 = try? text.aesDecrypt(key: result, iv: array)
+            decryptedMessageHandler(decryptedMessage: decryptedMessage1,socket: socket)
              print(decryptedMessage1) 
         }
         catch{}
-        
-        
-    // let  decryptedMessage = try? decryptMessage(encryptedMessage: text, encryptionKey: sharedAesKey)
-       
-        
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
@@ -79,16 +82,19 @@ class ViewController: UIViewController,WebSocketDelegate {
         super.viewDidLoad()
         var sharedAesKey:String!
          sharedAesKey=sharedKeyGenerator()
+       
         // Do any additional setup after loading the view, typically from a n
         }
 
     @IBOutlet weak var usernameText: UITextField!
     var socket:WebSocket!
     
+    var delegate:DevStateDelegate?
+    
+     
     @IBOutlet weak var password: UITextField!
     @IBAction func logInButton(_ sender: UIButton) {
         logIntoServer()
-        print("LogIn Button pressed")
     }
     @IBAction func registerButton(_ sender: UIButton) {
     }
@@ -131,13 +137,68 @@ class ViewController: UIViewController,WebSocketDelegate {
         
         
     }
-    func encryptMessage(message: String, encryptionKey: String) throws -> String {
-        let messageData = message.data(using: .utf8)!
-        let cipherData = RNCryptor.encrypt(data: messageData, withPassword: encryptionKey)
-        return cipherData.base64EncodedString()
+    func decryptedMessageHandler(decryptedMessage:String,socket:WebSocketClient){
+        print("decrypted message handler called")
+        var array = [UInt8](repeating: 0x00, count: 16)
+        let iv=array.toBase64()
+        var digest = SHA2(variant: .sha256)
+        
+        let array1: [UInt8] = Array(sharedAesKey.utf8)
+        
+        
+        
+        let parts = decryptedMessage.components(separatedBy: "-")
+        if parts[0]=="VERIFY"{
+            if parts[1]=="True"{
+                if parts[2]=="STATUS"{
+                    if parts[3]=="TL_ON"{
+                        print("parts ==TL_ON")
+                       // changeBulb(true)
+                        print ("delegate :\(delegate)")
+                        delegate?.changeBulb(state: parts[3])
+                    }
+                    else if parts[3]=="TL_OFF"{
+                        delegate?.changeBulb(state: parts[3])
+                        
+                    }
+                    
+                }
+                else if parts[2]=="BLEMAC"{
+                    do {let partial1 = try digest.update(withBytes:array1 )
+                        let result=try digest.finish()
+                        let am1="ALARM-"+username!+"-status"
+                        let eam1=try am1.aesEncrypt(key: result, iv: array)
+                        let sm1="sessionRequest-"+username!
+                        let esm1=try sm1.aesEncrypt(key: result, iv: array)
+                        socket.write(string:eam1)
+                        socket.write(string: esm1)
+                       // let bssid = parts[3].substring(0, 17);
+                        print("Alarm message send")
+                       
+                        
+                    }
+                    catch{}
+                    
+                  
+                }
+            }
+        }
+        else if parts[0]=="session"{
+            transfer_session=parts[1]
+            do {let partial1 = try digest.update(withBytes:array1 )
+                let result=try digest.finish()
+                
+                socket.write(string:try ("STATUS-" + username! + "-" + transfer_session).aesEncrypt(key: result,iv:array))
+                
+            }
+            catch{}
+            
+        }
+        
+        
     }
     func encryption(message:String,publicKey:PublicKey) throws ->String{
-       
+        
         let clear = try ClearMessage(string: message, using: .utf8)
         let encrypted = try clear.encrypted(with: publicKey, padding: .OAEP)
         
@@ -146,28 +207,18 @@ class ViewController: UIViewController,WebSocketDelegate {
         let base64String = encrypted.base64String
         return base64String
     }
-    func decryptMessage(encryptedMessage: String, encryptionKey: String) throws -> String {
-        print ("In Decrypt Message function encryptedMessage:"+encryptedMessage)
-        let decodedData = Data(base64Encoded: encryptedMessage, options: .ignoreUnknownCharacters)
-        let dataString = String(data: decodedData!, encoding: String.Encoding.utf8)
-        if let decodedData = decodedData {
-            print("\(decodedData as NSData)")
+    override   func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier=="logInButtonSegue"{
+            let sourceVC=segue.destination as! MainUIViewController
+            self.delegate=sourceVC
+            
+            
         }
-
-       // let encryptedData = Data.init(base64Encoded: encryptedMessage)!
-        do {
-            let originalData = try RNCryptor.decrypt(data: decodedData!, withPassword: encryptionKey)
-            return  String(data: originalData, encoding: String.Encoding.utf8)!
-        } catch {
-            print(error)
-            return ("Data error")
-        }
-       // let decryptedData = try RNCryptor.decrypt(data: encryptedData, withPassword: encryptionKey)
-        //let decryptedString = String(data: decryptedData, encoding: .utf8)!
-       
-        
-        
+    }
     }
     
-}
+    
+    
+    
+
 
