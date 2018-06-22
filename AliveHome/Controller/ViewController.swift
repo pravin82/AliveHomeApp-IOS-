@@ -18,6 +18,8 @@ import CryptoSwift
 let mySpecialNotificationKey = "specialNotificationKey"
 protocol DevStateDelegate{
     func changeBulb(state:String)
+    func changeFan(state:String)
+   
 }
 class ViewController: UIViewController,WebSocketDelegate {
      lazy var sharedAesKey=sharedKeyGenerator()
@@ -195,7 +197,11 @@ class ViewController: UIViewController,WebSocketDelegate {
                         
                     }
                     
+                        delegate?.changeFan(state: parts[4])
+                    
+                    
                     preferences.set(parts[4], forKey: fanKey)
+                    print ("fan state VC: "+parts[4])
                 }
                 else if parts[2]=="BLEMAC"{
                     do {let partial1 = try digest.update(withBytes:array1 )
