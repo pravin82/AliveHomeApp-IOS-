@@ -511,13 +511,16 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <size key="titleShadowOffset" width="9" height="0.0"/>
                                 <state key="normal" title="Button" image="bulb_off"/>
+                                <connections>
+                                    <action selector="button_light:" destination="gke-gW-BN0" eventType="touchUpInside" id="pAG-Yt-Duc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="KOI-pS-KPh"/>
                     </view>
                     <connections>
-                        <outlet property="button_light" destination="XVH-tA-pdh" id="Gr5-gi-bN7"/>
+                        <outlet property="button_light" destination="XVH-tA-pdh" id="KQi-my-b4e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n6T-C2-C53" userLabel="First Responder" sceneMemberID="firstResponder"/>

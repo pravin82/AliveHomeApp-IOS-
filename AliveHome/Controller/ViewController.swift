@@ -24,14 +24,32 @@ class ViewController: UIViewController,WebSocketDelegate {
      lazy var username=usernameText.text
      lazy var transfer_session=""
      lazy var  pk = try? PublicKey(derNamed: "public_key")
+    let preferences = UserDefaults.standard
+    
+    let usernameKey = "username"
+    let passwordKey =  "password"
+    let bulbKey     = "bulb"
+    let fanKey      = "fan"
+    let transKey    = "trans"
+    let sharedaesKey = "sharedaes"
+   // let socketKey="socket"
     
     
+    
+    //  Save to disk
+    
+
+    
+  
     
     func websocketDidConnect(socket: WebSocketClient) {
         print("Websocket connected")
-        let username=usernameText.text
-       
+        
+        
+       let username=usernameText.text
         let passwordtext=password.text
+        preferences.set(usernameText.text, forKey: usernameKey)
+        preferences.set(password.text,forKey:passwordKey)
         let message1:String;
         let message2:String;
         let message3:String;
@@ -39,6 +57,7 @@ class ViewController: UIViewController,WebSocketDelegate {
         let message5:String;
         let message6:String;
         message1="LOGI-"+username!
+        
         message2="-"+passwordtext!
         message3="-"+sharedAesKey
         message5="ENQ-"+username!+"-"+sharedAesKey
@@ -76,15 +95,25 @@ class ViewController: UIViewController,WebSocketDelegate {
         print ("client recived the data")
         
     }
-    
+  
 
     override func viewDidLoad() {
         super.viewDidLoad()
         var sharedAesKey:String!
+       
+       
+        let didSave = preferences.synchronize()
+        
+        
+        
+        
+      
          sharedAesKey=sharedKeyGenerator()
+        
        
         // Do any additional setup after loading the view, typically from a n
         }
+    
 
     @IBOutlet weak var usernameText: UITextField!
     var socket:WebSocket!
@@ -95,6 +124,9 @@ class ViewController: UIViewController,WebSocketDelegate {
     @IBOutlet weak var password: UITextField!
     @IBAction func logInButton(_ sender: UIButton) {
         logIntoServer()
+        
+        
+        
     }
     @IBAction func registerButton(_ sender: UIButton) {
     }
@@ -105,12 +137,14 @@ class ViewController: UIViewController,WebSocketDelegate {
    
     var message:String!
     
-    
+  
     
     func logIntoServer(){
        
         let  wsuri = "ws://alivehome.iitkgp.ac.in:81"
         socket = WebSocket(url: URL(string: wsuri)!)
+        //preferences.set(socket, forKey: socketKey)
+        
        
         socket.delegate=self
         socket.connect()
@@ -120,6 +154,7 @@ class ViewController: UIViewController,WebSocketDelegate {
         
         
     }
+ 
     func sharedKeyGenerator() -> String {
         let randString = "abcdefghijklmnopqrstuvwxyz0123456789{}[],.!@#$%^&*()"
         let arrayRand=Array(randString);
@@ -144,7 +179,8 @@ class ViewController: UIViewController,WebSocketDelegate {
         var digest = SHA2(variant: .sha256)
         
         let array1: [UInt8] = Array(sharedAesKey.utf8)
-        
+        preferences.set(sharedAesKey,forKey:sharedaesKey)
+        print("sharedAesKey LogIN UI :"+sharedAesKey )
         
         
         let parts = decryptedMessage.components(separatedBy: "-")
@@ -152,9 +188,6 @@ class ViewController: UIViewController,WebSocketDelegate {
             if parts[1]=="True"{
                 if parts[2]=="STATUS"{
                     if parts[3]=="TL_ON"{
-                        print("parts ==TL_ON")
-                       // changeBulb(true)
-                        print ("delegate :\(delegate)")
                         delegate?.changeBulb(state: parts[3])
                     }
                     else if parts[3]=="TL_OFF"{
@@ -162,6 +195,7 @@ class ViewController: UIViewController,WebSocketDelegate {
                         
                     }
                     
+                    preferences.set(parts[4], forKey: fanKey)
                 }
                 else if parts[2]=="BLEMAC"{
                     do {let partial1 = try digest.update(withBytes:array1 )
@@ -185,6 +219,8 @@ class ViewController: UIViewController,WebSocketDelegate {
         }
         else if parts[0]=="session"{
             transfer_session=parts[1]
+            preferences.set(transfer_session, forKey: transKey)
+            
             do {let partial1 = try digest.update(withBytes:array1 )
                 let result=try digest.finish()
                 
@@ -207,14 +243,18 @@ class ViewController: UIViewController,WebSocketDelegate {
         let base64String = encrypted.base64String
         return base64String
     }
+    
     override   func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier=="logInButtonSegue"{
-            let sourceVC=segue.destination as! MainUIViewController
-            self.delegate=sourceVC
+            let destinationVC=segue.destination as! MainUIViewController
+            self.delegate=destinationVC
+            destinationVC.logInVC = self
+            
             
             
         }
     }
+ 
     }
     
     
