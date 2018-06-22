@@ -533,14 +533,23 @@
                                         <state key="normal">
                                             <color key="titleShadowColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="fan_speed:" destination="gke-gW-BN0" eventType="touchUpInside" id="d6R-Il-NaE"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaz-4v-hLw">
                                         <rect key="frame" x="59" y="0.0" width="30" height="30"/>
                                         <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="fan_speed:" destination="gke-gW-BN0" eventType="touchUpInside" id="f4O-pV-B5s"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HUM-9N-wLb">
                                         <rect key="frame" x="118" y="0.0" width="30" height="30"/>
                                         <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="fan_speed:" destination="gke-gW-BN0" eventType="touchUpInside" id="Zei-TT-7uu"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLl-Se-avP">
                                         <rect key="frame" x="177" y="0.0" width="30" height="30"/>
@@ -548,6 +557,9 @@
                                         <state key="normal">
                                             <color key="titleShadowColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="fan_speed:" destination="gke-gW-BN0" eventType="touchUpInside" id="Pw6-Ib-xpx"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="5" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5a8-qw-AMa">
                                         <rect key="frame" x="236" y="0.0" width="30" height="30"/>
@@ -564,6 +576,11 @@
                     </view>
                     <connections>
                         <outlet property="button_light" destination="XVH-tA-pdh" id="KQi-my-b4e"/>
+                        <outlet property="button_speed" destination="5a8-qw-AMa" id="qla-Zk-YUJ"/>
+                        <outlet property="button_speed1" destination="hM1-9e-GIM" id="Enh-4o-0Rp"/>
+                        <outlet property="button_speed2" destination="vaz-4v-hLw" id="zbr-Vm-eEP"/>
+                        <outlet property="button_speed3" destination="HUM-9N-wLb" id="En8-hN-6tP"/>
+                        <outlet property="button_speed4" destination="ZLl-Se-avP" id="OaD-ZR-3CB"/>
                         <outlet property="fan_button" destination="qGx-b1-zdU" id="41y-n9-J5Y"/>
                     </connections>
                 </viewController>
