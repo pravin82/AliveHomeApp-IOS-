@@ -34,6 +34,7 @@ class ViewController: UIViewController,WebSocketDelegate {
     let fanKey      = "fan"
     let transKey    = "trans"
     let sharedaesKey = "sharedaes"
+    var passError=false
    // let socketKey="socket"
     
     
@@ -125,7 +126,28 @@ class ViewController: UIViewController,WebSocketDelegate {
      
     @IBOutlet weak var password: UITextField!
     @IBAction func logInButton(_ sender: UIButton) {
+        if((usernameText.text?.isEmpty)!||(password.text?.isEmpty)!){
+            let alert=UIAlertView()
+            if (usernameText.text?.isEmpty)!{
+                alert.message="Username is Empty"
+                alert.addButton(withTitle: "Ok")
+                alert.show()
+            }
+            else if (password.text?.isEmpty)!{
+                alert.message="Password is Empty"
+                alert.addButton(withTitle: "Ok")
+                alert.show()
+            }
+            
+            
+        }
+        else{
         logIntoServer()
+            self.performSegue(withIdentifier: "vCSegue", sender: self)
+           
+            
+        }
+        
         
         
         
@@ -188,6 +210,7 @@ class ViewController: UIViewController,WebSocketDelegate {
         let parts = decryptedMessage.components(separatedBy: "-")
         if parts[0]=="VERIFY"{
             if parts[1]=="True"{
+             passError=false
                 if parts[2]=="STATUS"{
                     if parts[3]=="TL_ON"{
                         delegate?.changeBulb(state: parts[3])
@@ -221,6 +244,16 @@ class ViewController: UIViewController,WebSocketDelegate {
                     
                   
                 }
+            //self.performSegue(withIdentifier: "vCSegue", sender: self)
+            }
+            else if parts[1]=="False"{
+              print ("Verify is False")
+                passError=true
+                // Create the alert controller
+                
+                
+               // shouldPerformSegue(withIdentifier: "logInButtonSegue", sender: self)
+                
             }
         }
         else if parts[0]=="session"{
@@ -251,7 +284,7 @@ class ViewController: UIViewController,WebSocketDelegate {
     }
     
     override   func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier=="logInButtonSegue"{
+        if segue.identifier=="vCSegue"{
             let destinationVC=segue.destination as! MainUIViewController
             self.delegate=destinationVC
             destinationVC.logInVC = self
@@ -260,6 +293,11 @@ class ViewController: UIViewController,WebSocketDelegate {
             
         }
     }
+    
+    
+ 
+    
+   
  
     }
     

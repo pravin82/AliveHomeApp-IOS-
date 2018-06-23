@@ -10,11 +10,24 @@ import UIKit
 import Alamofire
 import RNCryptor
 import Starscream
+import Security
+import SwiftyRSA
+import CryptoSwift
+var hardwareId="";
+var providedUsername="";
+var providedPassword="";
+
+var username="";
+var emailId="";
+var password="";
+var confirmPassword="";
+var securityAnswer="";
 
 class RegisterViewController: UIViewController,WebSocketDelegate {
     
     
-
+    
+    lazy var  pk = try? PublicKey(derNamed: "public_key")
     @IBOutlet weak var selectSecurityOutlet: UIButton!
     @IBOutlet var securityQuestionOutlet: [UIButton]!
     
@@ -60,34 +73,18 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         }
     }
     @IBAction func registerButton(_ sender: UIButton) {
-        let hardwareId=hardwareIdTextField.text;
-        let providedUsername=providedUsernameTextField.text;
-        let providedPassword=providedPasswordTextField.text;
+        hardwareId=hardwareIdTextField.text!;
+         providedUsername=providedUsernameTextField.text!;
+         providedPassword=providedPasswordTextField.text!;
        
-        let username=usernameTextField.text;
-        let emailId=emailIdTextField.text;
-        let password=passwordTextField.text;
-        let confirmPassword=confirmPasswordTextField.text;
-        let securityAnswer=securityAnswerTextField.text;
+         username=usernameTextField.text!;
+         emailId=emailIdTextField.text!;
+         password=passwordTextField.text!;
+         confirmPassword=confirmPasswordTextField.text!;
+         securityAnswer=securityAnswerTextField.text!;
         
-        if isValidEmail(testStr: emailId!) && isValidUsername(Input: username!) && isValidSecurityAnswer(Input: securityAnswer!) && isValidPassword(Input: password!) && password==confirmPassword {
-            let message1:String;
-            let message2:String;
-            let message3:String;
-            let message4:String;
-            let message5:String;
-            let message6:String;
-            let message7:String;
-            
-            
-            message1 = "NUS-" + hardwareId! + "-" + providedUsername! + "-"
-                
-            message2=providedPassword! + "-"
-            message3=username! + "-" + password! + "-"
-            message4=confirmPassword! + "-"+securityQuestionText
-            message5="-" + securityAnswer! + "-"
-            message6=emailId! + "-" + sharedAesKey
-            message=message1+message2+message3+message4+message5+message6
+        if isValidEmail(testStr: emailId) && isValidUsername(Input: username) && isValidSecurityAnswer(Input: securityAnswer) && isValidPassword(Input: password) && password==confirmPassword {
+           
             do{
                 loginToServer()
             }
@@ -138,10 +135,15 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
    
     
     
-    func encryptMessage(message: String, encryptionKey: String) throws -> String {
-        let messageData = message.data(using: .utf8)!
-        let cipherData = RNCryptor.encrypt(data: messageData, withPassword: encryptionKey)
-        return cipherData.base64EncodedString()
+    func encryption(message:String,publicKey:PublicKey) throws ->String{
+        
+        let clear = try ClearMessage(string: message, using: .utf8)
+        let encrypted = try clear.encrypted(with: publicKey, padding: .OAEP)
+        
+        // Then you can use:
+        
+        let base64String = encrypted.base64String
+        return base64String
     }
     func decryptMessage(encryptedMessage: String, encryptionKey: String) throws -> String {
         
@@ -197,9 +199,26 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
     
     //  Starscream function required to Implement.
     func websocketDidConnect(socket: WebSocketClient) {
+        let message1:String;
+        let message2:String;
+        let message3:String;
+        let message4:String;
+        let message5:String;
+        let message6:String;
+        let message7:String;
+        
+        
+        message1 = "NUS-" + hardwareId + "-" + providedUsername + "-"
+        
+        message2=providedPassword + "-"
+        message3=username + "-" + password + "-"
+        message4=confirmPassword + "-"+securityQuestionText
+        message5="-" + securityAnswer + "-"
+        message6=emailId + "-" + sharedAesKey
+        message=message1+message2+message3+message4+message5+message6
        print ("websocket is connected")
         if socket.isConnected{
-            let encryptedMessage = try! encryptMessage(message: message, encryptionKey: sharedAesKey)
+            let encryptedMessage = try!( encryption(message: message,publicKey: pk! ))
             socket.write(string: encryptedMessage)
             print("Ready to write the message")
         }
@@ -214,12 +233,20 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         print("websocket is disconnected: \(error?.localizedDescription)")
     }
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        do{
-          try  decryptMessage(encryptedMessage: text, encryptionKey:sharedAesKey )
+        var array = [UInt8](repeating: 0x00, count: 16)
+        let iv=array.toBase64()
+        var digest = SHA2(variant: .sha256)
+        let array1: [UInt8] = Array(sharedAesKey.utf8)
+        
+        
+        do {let partial1 = try digest.update(withBytes:array1 )
+            let result=try digest.finish()
+            let decryptedMessage1:String!
+            decryptedMessage1 = try? text.aesDecrypt(key: result, iv: array)
+            decryptedMessageHandler(decryptedMessage: decryptedMessage1,socket: socket)
+            print(decryptedMessage1)
         }
-        catch{
-            print ("Message was not decrypted  by the server")
-        }
+        catch{}
     }
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("got some data: \(data.count)")
@@ -241,6 +268,25 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         
         
     }
+    func decryptedMessageHandler(decryptedMessage:String,socket:WebSocketClient){
+        print("decrypted message handler called")
+        var array = [UInt8](repeating: 0x00, count: 16)
+        let iv=array.toBase64()
+        var digest = SHA2(variant: .sha256)
+        
+        let array1: [UInt8] = Array(sharedAesKey.utf8)
+        
+        
+        
+        let parts = decryptedMessage.components(separatedBy: "-")
+        if parts[0]=="NUS"{
+            if parts[1]=="True"{
+               // performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
+                
+                }
+        }
+    }
+    
     
     
 
@@ -253,5 +299,7 @@ class RegisterViewController: UIViewController,WebSocketDelegate {
         // Pass the selected object to the new view controller.
     }
     */
+
+
 
 }

@@ -78,7 +78,7 @@ class MainUIViewController: UIViewController,DevStateDelegate {
             sendToServer()
         }
         else if sender.tag==5{
-            fanState=="FAN_ON_5"
+            fanState="FAN_ON_5"
             fan_button.setImage(#imageLiteral(resourceName: "ic_home_fan5"), for: .normal)
             button_speed.backgroundColor=hexStringToUIColor(hex: "#0200b9")
             button_speed1.backgroundColor=hexStringToUIColor(hex: "#00fff3")
@@ -143,7 +143,7 @@ class MainUIViewController: UIViewController,DevStateDelegate {
              button_speed1.backgroundColor=hexStringToUIColor(hex: "#00fff3")
             
         }
-        else if state=="FAN_oN_2"{
+        else if state=="FAN_ON_2"{
             fan_button.setImage(#imageLiteral(resourceName: "ic_home_fan3"), for: .normal)
              button_speed1.backgroundColor=hexStringToUIColor(hex: "#00fff3")
              button_speed2.backgroundColor=hexStringToUIColor(hex: "#00bbd1")

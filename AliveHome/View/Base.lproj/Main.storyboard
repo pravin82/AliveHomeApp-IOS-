@@ -30,7 +30,6 @@
                                 <state key="normal" title="LogIn"/>
                                 <connections>
                                     <action selector="logInButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uq1-FC-qqJ"/>
-                                    <segue destination="gke-gW-BN0" kind="show" identifier="logInButtonSegue" id="Fen-bu-DMP"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ic_launcher" translatesAutoresizingMaskIntoConstraints="NO" id="AdR-Ti-7hb">
@@ -109,6 +108,7 @@
                     <connections>
                         <outlet property="password" destination="qX4-dx-F3o" id="A4T-K6-91U"/>
                         <outlet property="usernameText" destination="YSJ-iX-aRS" id="8Px-u5-ZQl"/>
+                        <segue destination="gke-gW-BN0" kind="show" identifier="vCSegue" id="pn7-8s-miT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
